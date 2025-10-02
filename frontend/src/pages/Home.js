@@ -78,7 +78,7 @@ export default function Home() {
           />
 
           {/* Analyse Button */}
-          <div className="w-full flex justify-center mt-5">
+          <div className="mt-5 flex justify-center w-full">
             <div
               role="button"
               className="relative bg-primary text-white px-6 py-2 text-xs rounded-none cursor-pointer overflow-hidden group"
