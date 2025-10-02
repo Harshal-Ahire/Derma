@@ -70,20 +70,23 @@ export default function Home() {
           Derma.
         </h1>
 
-        <div className="w-full max-w-xs flex flex-col items-center -ml-4">
-          {/* Use the UploadComponent here */}
+        <div className="w-full max-w-xs flex flex-col items-center">
+          {/* Upload Component */}
           <UploadComponent
             selectedFile={selectedFile}
             setSelectedFile={setSelectedFile}
           />
 
-          <div
-            role="button"
-            className="mt-5 relative bg-primary text-white px-6 py-2 text-xs rounded-none cursor-pointer overflow-hidden group"
-            onClick={handleAnalyse}
-          >
-            <span className="relative z-10">Analyse</span>
-            <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+          {/* Analyse Button - fixed centered */}
+          <div className="w-full flex justify-center mt-5">
+            <div
+              role="button"
+              className="relative bg-primary text-white px-6 py-2 text-xs rounded-none cursor-pointer overflow-hidden group"
+              onClick={handleAnalyse}
+            >
+              <span className="relative z-10">Analyse</span>
+              <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+            </div>
           </div>
         </div>
       </main>
