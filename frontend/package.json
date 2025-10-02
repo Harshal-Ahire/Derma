@@ -10,7 +10,8 @@
     "recharts": "^2.15.4",
     "jspdf": "^2.5.1",
     "html2canvas": "^1.4.1",
-    "axios": "^1.5.1"
+    "axios": "^1.5.1",
+    "@gradio/client": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
