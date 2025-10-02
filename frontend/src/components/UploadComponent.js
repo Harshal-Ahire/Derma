@@ -14,7 +14,7 @@ export default function UploadComponent({ selectedFile, setSelectedFile }) {
   };
 
   return (
-    <div className="w-full max-w-xs flex flex-col items-center -ml-4">
+    <div className="w-full max-w-xs flex flex-col items-center">
       <p className="text-sm text-gray-500 mb-2">Upload File</p>
 
       <input
@@ -28,7 +28,7 @@ export default function UploadComponent({ selectedFile, setSelectedFile }) {
       <div
         role="button"
         tabIndex="0"
-        className="border border-blueBorder rounded px-3 py-1 flex items-center justify-center bg-white hover:bg-blue-50 cursor-pointer"
+        className="w-full border border-blueBorder rounded px-3 py-1 flex items-center justify-center bg-white hover:bg-blue-50 cursor-pointer"
         onClick={handleUploadClick}
       >
         <svg width="15px" height="15px" viewBox="0 0 15 15" className="mr-2">
