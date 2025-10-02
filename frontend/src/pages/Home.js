@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import UploadComponent from "../components/UploadComponent"; // Adjust path if needed
+import { Client, handle_file } from "@gradio/client"; // <-- Gradio client
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -13,43 +14,30 @@ export default function Home() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
+    setLoading(true);
 
     try {
-      setLoading(true);
+      // Connect to your Hugging Face Gradio space
+      const app = await Client.connect("harshaeve/derma-backend");
 
-      const res = await fetch(
-        "https://harshaeve-derma-backend.hf.space/predict",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      // Predict using Gradio client (wrap file properly)
+      const result = await app.predict("/predict", [handle_file(selectedFile)]);
 
-      if (!res.ok) {
-        throw new Error("Failed to get prediction from backend");
-      }
-
-      const data = await res.json();
-
-      // Ensure image_url is a full URL
-      const fullImageUrl = data.image_url?.startsWith("http")
-        ? data.image_url
-        : "https://harshaeve-derma-backend.hf.space" + data.image_url;
+      // result.data returns [text_output, heatmap_path]
+      const [text, heatmapPath] = result.data;
 
       navigate("/analyse", {
         state: {
           record: {
-            ...data,
-            image_url: fullImageUrl,
+            result: text,
+            image_url: heatmapPath || null,
           },
         },
       });
     } catch (err) {
-      console.error(err);
+      console.error("Error contacting Gradio backend:", err);
       alert(
-        "The model may be waking up (first request takes ~30s). Please try again."
+        "The model may be waking up (first request takes ~30s) or there was a connection issue."
       );
     } finally {
       setLoading(false);
