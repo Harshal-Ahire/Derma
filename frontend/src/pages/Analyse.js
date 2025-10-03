@@ -24,9 +24,10 @@ export default function Analyse() {
     return "Low Risk";
   };
 
+  // ⚠️ FIX APPLIED HERE
   const getFullImageUrl = (url) => {
     if (!url) return null;
-    return url.startsWith("http") ? url : "http://127.0.0.1:5000" + url;
+    return url.startsWith("http") ? url : "https://harshaeve-derma.hf.space" + url;
   };
 
   // ----------- PDF Export Function -----------
@@ -71,12 +72,12 @@ export default function Analyse() {
       <div className="bg-pageGray min-h-screen flex flex-col font-body text-gray-700 relative">
         <header className="w-full">
           <nav className="flex justify-center items-center py-7">
-                    <div className="w-[56rem] flex justify-between items-center text-sm text-gray-500 tracking-wide">
-                      <Link to="/" className="hover:text-black transition-colors">Home</Link>
-                      <Link to="/history"className="hover:text-black transition-colors pl-32">Result History</Link>
-                      <Link to="/evaluation" className="hover:text-black transition-colors pl-14">Model Evaluation</Link>
-                    </div>
-                  </nav>
+            <div className="w-[56rem] flex justify-between items-center text-sm text-gray-500 tracking-wide">
+              <Link to="/" className="hover:text-black transition-colors">Home</Link>
+              <Link to="/history"className="hover:text-black transition-colors pl-32">Result History</Link>
+              <Link to="/evaluation" className="hover:text-black transition-colors pl-14">Model Evaluation</Link>
+            </div>
+          </nav>
         </header>
 
         {/* Wrap content for PDF */}
