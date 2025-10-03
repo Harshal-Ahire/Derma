@@ -22,9 +22,12 @@ export default function Home() {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
+    
+    // ⚠️ FIX APPLIED HERE: Base URL for API calls
+    const BASE_API_URL = "https://harshaeve-derma.hf.space"; 
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/predict", {
+      const res = await fetch(BASE_API_URL + "/predict", {
         method: "POST",
         body: formData,
       });
@@ -34,7 +37,8 @@ export default function Home() {
       // Ensure image_url is a full URL
       const fullImageUrl = data.image_url.startsWith("http")
         ? data.image_url
-        : "http://127.0.0.1:5000" + data.image_url;
+        // ⚠️ FIX APPLIED HERE: Base URL for constructing image URL
+        : BASE_API_URL + data.image_url; 
 
       navigate("/analyse", {
         state: {
