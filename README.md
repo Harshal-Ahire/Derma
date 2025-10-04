@@ -1,8 +1,9 @@
 # **Derma — End-to-End Skin Lesion Classification Web App**
 
-[![Model](https://img.shields.io/badge/Model-ViT-blue)](https://huggingface.co/Anwarkh1/Skin_Cancer-Image_Classification)  
-[![Dataset](https://img.shields.io/badge/Dataset-HAM10000-orange)](https://huggingface.co/datasets/marmal88/skin_cancer)  
-[![License](https://img.shields.io/badge/License-Apache--2.0-green)](https://github.com/yourusername/derma/blob/main/LICENSE)
+[![Model](https://img.shields.io/badge/Model-ViT-blue?style=for-the-badge)](https://huggingface.co/Anwarkh1/Skin_Cancer-Image_Classification)
+[![Dataset](https://img.shields.io/badge/Dataset-HAM10000-orange?style=for-the-badge)](https://huggingface.co/datasets/marmal88/skin_cancer)
+[![License](https://img.shields.io/badge/License-Apache--2.0-green?style=for-the-badge)](https://github.com/yourusername/derma/blob/main/LICENSE)
+[![Live App](https://img.shields.io/badge/Live%20App-Derma%20on%20Render-brightgreen?style=for-the-badge)](https://derma-ui.onrender.com/)
 
 ---
 
