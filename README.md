@@ -1,12 +1,3 @@
-# **Derma — Skin Lesion Classification Web App**
-
-
-[![Model](https://img.shields.io/badge/Model-ViT-blue?style=for-the-badge&logo=google&logoColor=white)](https://huggingface.co/Anwarkh1/Skin_Cancer-Image_Classification)
-[![Dataset](https://img.shields.io/badge/Dataset-HAM10000-orange?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/marmal88/skin_cancer)
-[![License](https://img.shields.io/badge/License-Apache--2.0-green?style=for-the-badge&logo=apache&logoColor=white)](https://github.com/yourusername/derma/blob/main/LICENSE)
-[![Live App](https://img.shields.io/badge/Live%20App-Derma%20on%20Render-brightgreen?style=for-the-badge&logo=render&logoColor=white)](https://derma-ui.onrender.com/)
-
----
 
 ## **About**
 - End-to-end web app for **7-class skin lesion classification** using Google’s Vision Transformer (ViT) model hosted on Hugging Face.  
@@ -37,16 +28,19 @@
 ---
 
 ## **Model Overview**
-- **Architecture:** Vision Transformer (ViT)  
-- **Pre-trained Model:** Google ViT (16x16 patch size, ImageNet21k)  
-- **Modified Head:** Replaced classification head for 7-class task  
-- **Optimizer:** Adam, LR=1e-4  
-- **Loss Function:** Cross-Entropy Loss  
-- **Batch Size:** 32  
-- **Epochs:** 5  
-- **Train Accuracy:** 96.14%  
-- **Validation Accuracy:** 96.95%  
-- **Validation Loss:** 0.10  
+
+| Parameter                     | Description                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| **Image size**                 | 600×600 px; all images resized to a consistent dimension for the model.    |
+| **Train/Validation Split**     | Stratified by lesion type; maintains class proportions in both sets.       |
+| **Optimizer**                  | Adam; updates model weights efficiently to minimize loss.                  |
+| **Learning Rate (LR)**         | 1e-4 (0.0001); controls the step size during weight updates.               |
+| **Batch Size**                 | 32; number of images processed at a time before updating model weights.    |
+| **Epochs**                     | 5; each image in the training set is seen 5 times during training.         |
+| **Train Accuracy**             | 96.14%; performance on the training set.                                   |
+| **Validation Accuracy**        | 96.95%; performance on unseen data.                                        |
+| **Validation Loss**            | 0.10; low value indicates confident and accurate predictions.              |
+
 
 ---
 
