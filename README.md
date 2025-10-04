@@ -1,24 +1,32 @@
-# About
+# **Derma — End-to-End Skin Lesion Classification Web App**
 
-Derma — An end-to-end web application for 7-class skin lesion classification using Google’s Vision Transformer (ViT) model hosted on Hugging Face. The model, trained on Marmal88's HAM10000-derived Skin Cancer Dataset, achieves 96.95% validation accuracy.
+[![Model](https://img.shields.io/badge/Model-ViT-blue)](https://huggingface.co/Anwarkh1/Skin_Cancer-Image_Classification)  
+[![Dataset](https://img.shields.io/badge/Dataset-HAM10000-orange)](https://huggingface.co/datasets/marmal88/skin_cancer)  
+[![License](https://img.shields.io/badge/License-Apache--2.0-green)](https://github.com/yourusername/derma/blob/main/LICENSE)
 
-The app includes Grad-CAM visualizations to highlight regions influencing predictions and demonstrates full-stack deployment with Flask, React, and Render.
+---
 
-🔗 Check out the live app: [Derma on Render](https://derma-ui.onrender.com/)
+## **About**
+- End-to-end web app for **7-class skin lesion classification** using Google’s Vision Transformer (ViT) model hosted on Hugging Face.  
+- Model trained on **Marmal88's HAM10000-derived Skin Cancer Dataset (13,354 images)**.  
+- Achieves **96.95% validation accuracy**.  
+- Includes **Grad-CAM visualizations** for model interpretability.  
+- 🔗 **Check out the live app:** [Derma on Render](https://derma-ui.onrender.com/)
+
+---
 
 ## **Dataset Overview**
-
 - **Dataset Name:** HAM10000 (via Marmal88 on Hugging Face)  
 - **Number of images:** 13,354  
 - **Image size:** 600x600 px  
 - **Classes (7):**  
-    - Actinic keratoses (akiec)  
-    - Basal cell carcinoma (bcc)  
-    - Benign keratosis-like lesions (bkl)  
-    - Dermatofibroma (df)  
-    - Melanocytic nevi (nv)  
-    - Melanoma (mel)  
-    - Vascular lesions (vasc)  
+  - Actinic keratoses (akiec)  
+  - Basal cell carcinoma (bcc)  
+  - Benign keratosis-like lesions (bkl)  
+  - Dermatofibroma (df)  
+  - Melanocytic nevi (nv)  
+  - Melanoma (mel)  
+  - Vascular lesions (vasc)  
 - **Other metadata:** age, sex, lesion localization, histopathology confirmed  
 - **Train/Validation Split:** Stratified by lesion type  
 
@@ -27,7 +35,6 @@ The app includes Grad-CAM visualizations to highlight regions influencing predic
 ---
 
 ## **Model Overview**
-
 - **Architecture:** Vision Transformer (ViT)  
 - **Pre-trained Model:** Google ViT (16x16 patch size, ImageNet21k)  
 - **Modified Head:** Replaced classification head for 7-class task  
@@ -42,7 +49,6 @@ The app includes Grad-CAM visualizations to highlight regions influencing predic
 ---
 
 ## **Key Features**
-
 - Upload **skin images (JPG/PNG)** to classify into 7 lesion categories  
 - **Grad-CAM heatmaps** for interpretability  
 - View **class probabilities** for detailed prediction insight  
@@ -51,7 +57,6 @@ The app includes Grad-CAM visualizations to highlight regions influencing predic
 ---
 
 ## **Tech Stack**
-
 - **Frontend:** React, Tailwind CSS  
 - **Backend:** Flask (Python)  
 - **Model Hosting:** Hugging Face Spaces  
@@ -60,6 +65,5 @@ The app includes Grad-CAM visualizations to highlight regions influencing predic
 ---
 
 ## **Disclaimer**
-
 - This project is for **educational and demonstration purposes only**.  
 - **Not intended for clinical or diagnostic use**.
