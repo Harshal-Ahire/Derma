@@ -4,4 +4,5 @@ Derma — An end-to-end web application for 7-class skin lesion classification u
 
 The app includes Grad-CAM visualizations to highlight regions influencing predictions and demonstrates full-stack deployment with Flask, React, and Render.
 
-🔗 Check out the live app: Derma on Render
+🔗 Check out the live app: [Derma on Render](https://derma-ui.onrender.com/)
+
