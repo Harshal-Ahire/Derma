@@ -24,13 +24,13 @@ export default function Analyse() {
     return "Low Risk";
   };
 
-  // ⚠️ FIX APPLIED HERE
+ 
   const getFullImageUrl = (url) => {
     if (!url) return null;
     return url.startsWith("http") ? url : "https://harshaeve-derma.hf.space" + url;
   };
 
-  // ----------- PDF Export Function -----------
+  // PDF Export Function 
   const handleExportPDF = () => {
     const input = document.getElementById("analyse-page");
     if (!input) return;
@@ -65,7 +65,7 @@ export default function Analyse() {
       pdf.save("Derma_Report.pdf");
     });
   };
-  // ------------------------------------------
+
 
   if (record) {
     return (
@@ -80,7 +80,7 @@ export default function Analyse() {
           </nav>
         </header>
 
-        {/* Wrap content for PDF */}
+        // pdf gen.
         <main id="analyse-page" className="flex-grow flex flex-col items-center px-12 mt-16 gap-8">
           <div className="w-full max-w-4xl flex flex-col md:flex-row gap-12">
             {/* Left Block: Image and Prediction */}
@@ -93,8 +93,8 @@ export default function Analyse() {
                 />
               )}
 
-              {/* Grad-CAM heatmap (if available) */}
-              {record.heatmapUrl && (
+              
+              {record.heatmapUrl && ( // Grad-cam heatmap
                 <div className="mt-4">
                   <h3 className="text-md font-medium mb-2">Grad-CAM</h3>
                   <img
@@ -227,3 +227,4 @@ export default function Analyse() {
     </div>
   );
 }
+
