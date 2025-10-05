@@ -59,7 +59,7 @@ export default function Evaluation() {
     },
   ];
 
-  // Simulated training progress
+  // trained progresss
   const trainingData = [
     { epoch: 1, train_acc: 0.7586, val_acc: 0.8355, train_loss: 0.7168, val_loss: 0.4994 },
     { epoch: 2, train_acc: 0.8466, val_acc: 0.8973, train_loss: 0.4550, val_loss: 0.3237 },
@@ -126,7 +126,7 @@ export default function Evaluation() {
           </table>
         </section>
 
-        {/* Performance Summary */}
+        
         <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-6">
           <h3 className="text-xl font-semibold mb-4 text-left">Quantitative Performance Summary</h3>
           <table className="min-w-full divide-y divide-gray-200">
@@ -149,8 +149,8 @@ export default function Evaluation() {
           </table>
         </section>
 
-        {/* Training Progress Visualization */}
-        <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-6">
+       
+        <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-6"> // Training Visualization
           <h3 className="text-xl font-semibold mb-4 text-left">Training Progress Visualization</h3>
 
           <div className="w-full mb-8">
@@ -184,7 +184,7 @@ export default function Evaluation() {
           </div>
         </section>
 
-        {/* Existing dynamic metrics chart */}
+        // metrics chart
         {metrics && Object.keys(metrics).length > 0 && (
           <div className="w-full md:w-2/3 mb-8">
             <ResponsiveContainer width="100%" height={300}>
@@ -199,7 +199,7 @@ export default function Evaluation() {
           </div>
         )}
 
-        {/* Confusion Matrix */}
+        // Confusion Matrix
         {plots && plots.confusion_matrix && (
           <div className="mt-4 w-full max-w-4xl">
             <h3 className="font-semibold mb-2 text-left">Confusion Matrix</h3>
@@ -210,3 +210,4 @@ export default function Evaluation() {
     </div>
   );
 }
+
