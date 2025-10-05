@@ -9,7 +9,7 @@
 ---
 
 ## **Dataset Overview**
-- **Dataset Name:** HAM10000 (via Marmal88 on Hugging Face)  
+- **Dataset Name:** HAM10000 
 - **Number of images:** 13,354  
 - **Image size:** 600x600 px  
 - **Classes (7):**  
