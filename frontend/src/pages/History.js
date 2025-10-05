@@ -5,8 +5,7 @@ export default function History() {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    // ⚠️ FIX APPLIED HERE: Base URL for API calls
-    const BASE_API_URL = "https://harshaeve-derma.hf.space"; 
+    const BASE_API_URL = "https://harshaeve-derma.hf.space"; // api calls
 
     fetch(BASE_API_URL + "/history")
       .then(res => res.json())
@@ -43,8 +42,7 @@ export default function History() {
                 <tr key={idx}>
                   <td>
                     <img
-                      // ⚠️ FIX APPLIED HERE: Base URL for image source
-                      src={"https://harshaeve-derma.hf.space" + rec.image_url}
+                      src={"https://harshaeve-derma.hf.space" + rec.image_url} // image url calls
                       alt="upload"
                       className="w-20 h-20 object-cover rounded mx-auto"
                     />
@@ -76,3 +74,4 @@ export default function History() {
     </div>
   );
 }
+
