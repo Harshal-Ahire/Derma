@@ -62,4 +62,4 @@
 
 ## **Disclaimer**
 - This project is for **educational and demonstration purposes only**.  
-- **Not intended for clinical or diagnostic use**.
+- **Not intended for any clinical or diagnostic use**.
