@@ -1,65 +1,50 @@
+# DERMA — AI Medical Imaging Platform
 
-## **About**
-- End-to-end web app for **7-class skin lesion classification** using Google’s Vision Transformer (ViT) model hosted on Hugging Face.  
-- Model trained on **Marmal88's HAM10000-derived Skin Cancer Dataset (13,354 images)**.  
-- Achieves **96.95% validation accuracy**.  
-- Includes **Grad-CAM visualizations** for model interpretability.  
-- 🔗 **Check out the live app:** [Derma on Render](https://derma-ui.onrender.com/)
-
----
-
-## **Dataset Overview**
-- **Dataset Name:** HAM10000 
-- **Number of images:** 13,354  
-- **Image size:** 600x600 px  
-- **Classes (7):**  
-  - Actinic keratoses (akiec)  
-  - Basal cell carcinoma (bcc)  
-  - Benign keratosis-like lesions (bkl)  
-  - Dermatofibroma (df)  
-  - Melanocytic nevi (nv)  
-  - Melanoma (mel)  
-  - Vascular lesions (vasc)  
-- **Other metadata:** age, sex, lesion localization, histopathology confirmed  
-- **Train/Validation Split:** Stratified by lesion type  
-
-🔗 **Dataset link:** [HAM10000 on Hugging Face](https://huggingface.co/datasets/marmal88/skin_cancer)
-
----
-
-## **Model Overview**
-
-| Parameter                     | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| **Image size**                 | 600×600 px; all images resized to a consistent dimension for the model.    |
-| **Train/Validation Split**     | Stratified by lesion type; maintains class proportions in both sets.       |
-| **Optimizer**                  | Adam; updates model weights efficiently to minimize loss.                  |
-| **Learning Rate (LR)**         | 1e-4 (0.0001); controls the step size during weight updates.               |
-| **Batch Size**                 | 32; number of images processed at a time before updating model weights.    |
-| **Epochs**                     | 5; each image in the training set is seen 5 times during training.         |
-| **Train Accuracy**             | 96.14%; performance on the training set.                                   |
-| **Validation Accuracy**        | 96.95%; performance on unseen data.                                        |
-| **Validation Loss**            | 0.10; low value indicates confident and accurate predictions.              |
+DERMA is an end-to-end medical imaging platform designed for the classification of skin lesions. The system integrates a **Vision Transformer (ViT)** model to categorize dermatological images into seven distinct pathologies with high precision.
 
 
----
 
-## **Key Features**
-- Upload **skin images (JPG/PNG)** to classify into 7 lesion categories  
-- **Grad-CAM heatmaps** for interpretability  
-- View **class probabilities** for detailed prediction insight  
-- Fully **deployed web application** with Flask backend, React frontend, and Render hosting  
+## System Architecture
+
+The platform is engineered as a decoupled full-stack application:
+- **Frontend**: A React-based interface optimized for medical image uploads and visualization.
+- **Backend**: A Flask REST API that orchestrates data flow between the user and the inference engine.
+- **Inference Layer**: Leveraging a Vision Transformer (ViT) hosted on Hugging Face, specifically optimized for the HAM10000 dataset.
+
+## Core Features
+
+### 1. Model Interpretability (Grad-CAM)
+To bridge the "black box" gap in medical AI, I implemented **Grad-CAM (Gradient-weighted Class Activation Mapping)**. This generates heatmaps that highlight the specific regions of a lesion that influenced the model's classification, providing essential visual evidence for interpretability.
+
+### 2. Multi-Class Diagnostic Pipeline
+The system standardizes raw image uploads (resizing to 600x600px) and processes them through the pipeline to identify seven categories:
+- Melanoma (mel)
+- Melanocytic nevi (nv)
+- Basal cell carcinoma (bcc)
+- Actinic keratoses (akiec)
+- Benign keratosis-like lesions (bkl)
+- Dermatofibroma (df)
+- Vascular lesions (vasc)
+
+### 3. Probability Distribution Mapping
+Beyond a single classification, the API returns a full probability distribution, allowing users to see the model's confidence levels across all potential diagnoses.
+
+## Technical Stack
+
+- **Machine Learning**: PyTorch, Vision Transformer (ViT), Hugging Face Transformers
+- **Explainable AI (XAI)**: Grad-CAM
+- **Backend**: Python, Flask
+- **Frontend**: React, Tailwind CSS
+- **Deployment**: Render (Web Service), Hugging Face (Model Hosting)
+
+
+
+## Dataset Specification
+The underlying model utilizes the **HAM10000** ("Human Against Machine") dataset, a benchmark collection of 13,354 multi-source dermatoscopic images. 
+- **Validation Accuracy**: 96.95%
+- **Validation Loss**: 0.10
+
+## Disclaimer
+This project is for **educational and demonstration purposes only**. It is not intended for clinical use or diagnostic decision-making.
 
 ---
-
-## **Tech Stack**
-- **Frontend:** React, Tailwind CSS  
-- **Backend:** Flask (Python)  
-- **Model Hosting:** Hugging Face Spaces  
-- **Deployment:** Render  
-
----
-
-## **Disclaimer**
-- This project is for **educational and demonstration purposes only**.  
-- **Not intended for any clinical or diagnostic use**.
