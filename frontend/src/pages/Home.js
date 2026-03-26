@@ -7,10 +7,12 @@ export default function Home() {
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
+    // Capture the selected file from the native input
     setSelectedFile(e.target.files[0]);
   };
 
   const handleUploadClick = () => {
+    // Trigger the hidden file input
     fileInputRef.current.click();
   };
 
@@ -23,23 +25,23 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", selectedFile);
     
-    // ⚠️ FIX APPLIED HERE: Base URL for API calls
+    // Deployment API endpoint
     const BASE_API_URL = "https://harshaeve-derma.hf.space"; 
 
     try {
-      const res = await fetch(BASE_API_URL + "/predict", {
+      const res = await fetch(`${BASE_API_URL}/predict`, {
         method: "POST",
         body: formData,
       });
 
       const data = await res.json();
 
-      // Ensure image_url is a full URL
+      // Normalize image URL for cross-origin display
       const fullImageUrl = data.image_url.startsWith("http")
         ? data.image_url
-        // ⚠️ FIX APPLIED HERE: Base URL for constructing image URL
         : BASE_API_URL + data.image_url; 
 
+      // Transition to analysis view with results
       navigate("/analyse", {
         state: {
           record: {
@@ -49,7 +51,7 @@ export default function Home() {
         },
       });
     } catch (err) {
-      console.error(err);
+      console.error("Analysis request failed:", err);
     }
   };
 
@@ -58,21 +60,9 @@ export default function Home() {
       <header className="w-full">
         <nav className="flex justify-center items-center py-7">
           <div className="w-[56rem] flex justify-between items-center text-sm text-gray-500 tracking-wide">
-            <Link to="/" className="hover:text-black transition-colors">
-              Home
-            </Link>
-            <Link
-              to="/history"
-              className="hover:text-black transition-colors pl-32"
-            >
-              Result History
-            </Link>
-            <Link
-              to="/evaluation"
-              className="hover:text-black transition-colors pl-14"
-            >
-              Model Evaluation
-            </Link>
+            <Link to="/" className="hover:text-black transition-colors">Home</Link>
+            <Link to="/history" className="hover:text-black transition-colors pl-32">Result History</Link>
+            <Link to="/evaluation" className="hover:text-black transition-colors pl-14">Model Evaluation</Link>
           </div>
         </nav>
       </header>
@@ -90,13 +80,13 @@ export default function Home() {
             accept="image/*"
             onChange={handleFileChange}
             ref={fileInputRef}
-            style={{ display: "none" }}
+            className="hidden"
           />
 
           <div
             role="button"
             tabIndex="0"
-            className="border border-blueBorder rounded px-3 py-1 flex items-center justify-center bg-white hover:bg-blue-50 cursor-pointer"
+            className="border border-blueBorder rounded px-3 py-1 flex items-center justify-center bg-white hover:bg-blue-50 cursor-pointer transition-colors"
             onClick={handleUploadClick}
           >
             <svg width="15px" height="15px" viewBox="0 0 15 15" className="mr-2">
@@ -127,8 +117,7 @@ export default function Home() {
 
       <footer className="w-full py-6 text-center mt-auto">
         <p className="text-xs text-gray-500 italic">
-          *Derma — Intelligent skin lesion analysis for demo purposes only. Not
-          intended for clinical use.
+          *Derma — Intelligent skin lesion analysis for demo purposes only.
         </p>
       </footer>
     </div>
