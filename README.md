@@ -1,47 +1,45 @@
-# ConvoLink — Multilingual AI Tax & Banking Advisory Chatbot
+# DERMA — AI Medical Imaging Platform
 
-ConvoLink is an intelligent, production-ready multilingual chatbot that delivers accurate, structured, and compliant tax & GST advisory using **Large Language Models** and **RAG-inspired knowledge retrieval**. It focuses on advanced prompt engineering to generate safe, actionable, and well-formatted responses for real-world financial queries.
+DERMA is an end-to-end computer vision pipeline engineered for the classification of skin pathologies. By integrating a **Vision Transformer (ViT)**, the system achieves state-of-the-art diagnostic accuracy, surpassing traditional convolutional approaches in capturing global morphological context.
 
 ## Engineering & Architectural Decisions
 
-### Why LLM + RAG-style Architecture?
-Traditional rule-based chatbots fail to handle complex, context-heavy financial queries. I designed ConvoLink using **Google Gemini LLM** combined with **Retrieval-Augmented Generation (RAG) principles**:
+### Why Vision Transformer (ViT) vs. CNN?
+I bypassed traditional Convolutional Neural Networks (CNNs) in favor of the **Vision Transformer** architecture to solve specific domain challenges in dermatology:
 
-* **Grounded Responses**: Instead of relying solely on the LLM’s parametric knowledge, the system injects a curated Tax & GST knowledge base into the prompt. This significantly reduces hallucinations and ensures compliance with Indian tax laws.
-* **Advanced Prompt Engineering**: Crafted detailed system prompts with strict instructions for response structure, language detection, legal safety, and formatting — turning raw LLM output into professional, user-friendly advisory.
-* **Multilingual Capability**: Built-in language detection and response generation allows seamless support for English, Hindi, and other languages, making it accessible to a wider user base.
+* **Global Contextual Awareness**: Unlike CNNs, which are limited by local receptive fields, ViT uses **Self-Attention** to model long-range dependencies across the entire lesion. This is critical for identifying clinical features like "border irregularity" and "asymmetry".
+* **Inductive Bias Flexibility**: ViT’s flexible attention mechanism allows it to learn more complex, non-linear feature representations when scaled with the **HAM10000 dataset (13,000+ images)**.
+* **Native Interpretability**: The Transformer architecture’s attention weights provide a stronger basis for **Explainable AI (XAI)** integrations.
 
 ## Core Engineering Features
 
-### 1. Structured Prompt Engineering Pipeline
-- Designed a comprehensive prompt template that enforces consistent output format with sections like Scenario Summary, Legal Recommendations, GST Implications, and Step-by-Step Action Plan.
-- Implemented safety constraints to ensure only legal tax-saving strategies are suggested.
-- Used dynamic context injection from the knowledge base based on user queries.
+### 1. Explainable AI (XAI) with Grad-CAM
+- Implemented **Grad-CAM** to generate spatial heatmaps that highlight the exact regions (e.g., pigment networks, globules) influencing the model’s prediction.
+- Helps audit model decisions and increases trust in medical AI systems.
 
-### 2. Knowledge Base Integration
-- Built a clean retrieval system that loads and injects relevant portions of the Tax & GST knowledge base (updated as of Sep 2025) into every conversation.
-- Focused on domain-specific knowledge grounding for high-stakes financial advisory.
+### 2. High-Fidelity Preprocessing Pipeline
+- Resized images to **600x600 px** to preserve fine-grained textural details often lost in standard 224x224 px inputs.
+- Built robust normalization and data serialization for multi-class probability distribution.
 
-### 3. Production-Ready REST API Backend
-- Developed a robust Flask-based backend with proper error handling, input validation, and CORS support.
-- Designed a clean REST endpoint (`/api/chat`) that can be easily integrated into frontend applications or larger systems.
-- Prepared the architecture for easy containerization and deployment.
+### 3. Decoupled Cloud Architecture
+- Hosted ViT model inference on **Hugging Face** for efficient compute offloading.
+- Built a Flask middleware layer for API orchestration, error handling, and Grad-CAM generation.
 
 ## Technical Stack
 
-* **Language**: Python
-* **Backend**: Flask (REST API)
-* **LLM**: Google Gemini 1.5 Flash
-* **Techniques**: Advanced Prompt Engineering, RAG-style Retrieval, Multilingual NLP
-* **Others**: dotenv, Flask-CORS
-* **Frontend**: React + Vite
-* **Deployment**: Ready for Docker / Render / Hugging Face
+* **Machine Learning**: PyTorch, Vision Transformer (ViT), Hugging Face Transformers
+* **Interpretability**: Grad-CAM, OpenCV
+* **Backend**: Flask, Docker
+* **Frontend**: React
+* **Dataset**: HAM10000 (13,354 dermatoscopic images)
 
-## Impact & Key Achievements
+## Performance Metrics
 
-- Successfully handles complex tax scenarios (freelancers, salaried, GST queries, etc.)
-- Delivers consistently structured, professional, and actionable responses
-- Demonstrates practical application of LLM APIs in the **banking and financial domain**
+| Metric              | Result     | Engineering Significance                  |
+|---------------------|------------|-------------------------------------------|
+| Validation Accuracy | **96.95%** | High generalization on unseen cases       |
+| Validation Loss     | **0.10**   | Strong model confidence                   |
+| Classes             | **7**      | Covers critical skin pathologies          |
 
 ## Disclaimer
-This project is built for **educational and demonstration purposes only**. The advice provided is based on the knowledge base and should not be considered as official financial or tax consultation. Users are advised to consult certified professionals for real tax-related decisions.s
+This project is for **educational and demonstration purposes only**. It is not intended for clinical use or diagnostic decision-making.
