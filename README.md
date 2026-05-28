@@ -1,51 +1,47 @@
-# DERMA — AI Medical Imaging Platform
+# ConvoLink — Multilingual AI Tax & Banking Advisory Chatbot
 
-DERMA is an end-to-end computer vision pipeline engineered for the classification of skin pathologies. By integrating a **Vision Transformer (ViT)**, the system achieves state-of-the-art diagnostic accuracy, surpassing traditional convolutional approaches in capturing global morphological context.
-
-
+ConvoLink is an intelligent, production-ready multilingual chatbot that delivers accurate, structured, and compliant tax & GST advisory using **Large Language Models** and **RAG-inspired knowledge retrieval**. It focuses on advanced prompt engineering to generate safe, actionable, and well-formatted responses for real-world financial queries.
 
 ## Engineering & Architectural Decisions
 
-### Why Vision Transformer (ViT) vs. CNN?
-I bypassed traditional Convolutional Neural Networks (CNNs) in favor of the **Vision Transformer** architecture to solve specific domain challenges in dermatology:
+### Why LLM + RAG-style Architecture?
+Traditional rule-based chatbots fail to handle complex, context-heavy financial queries. I designed ConvoLink using **Google Gemini LLM** combined with **Retrieval-Augmented Generation (RAG) principles**:
 
-* **Global Contextual Awareness**: Unlike CNNs, which are limited by local receptive fields, ViT uses **Self-Attention** to model long-range dependencies across the entire lesion. This is critical for identifying clinical features like "border irregularity" and "asymmetry" which require a holistic view of the image.
-* **Inductive Bias Flexibility**: While CNNs have an inherent spatial bias, ViT’s flexible attention mechanism allows it to learn more complex, non-linear feature representations when scaled with the **HAM10000 dataset (13,000+ images)**.
-* **Native Interpretability**: The Transformer architecture’s attention weights provide a more mathematically grounded basis for **Explainable AI (XAI)** integrations compared to deep-layer activations in CNNs.
-
-[Image comparing CNN local feature extraction vs. Vision Transformer global self-attention]
+* **Grounded Responses**: Instead of relying solely on the LLM’s parametric knowledge, the system injects a curated Tax & GST knowledge base into the prompt. This significantly reduces hallucinations and ensures compliance with Indian tax laws.
+* **Advanced Prompt Engineering**: Crafted detailed system prompts with strict instructions for response structure, language detection, legal safety, and formatting — turning raw LLM output into professional, user-friendly advisory.
+* **Multilingual Capability**: Built-in language detection and response generation allows seamless support for English, Hindi, and other languages, making it accessible to a wider user base.
 
 ## Core Engineering Features
 
-### 1. Explainable AI (XAI) with Grad-CAM
-To solve the "Black Box" problem in medical diagnostics, I implemented **Grad-CAM (Gradient-weighted Class Activation Mapping)**. 
-- **Function**: It computes the gradients of the target class score with respect to the final attention blocks.
-- **Output**: Generates a spatial heatmap that "audits" the model's decision, showing exactly which visual markers (e.g., pigment networks or globules) triggered the classification.
+### 1. Structured Prompt Engineering Pipeline
+- Designed a comprehensive prompt template that enforces consistent output format with sections like Scenario Summary, Legal Recommendations, GST Implications, and Step-by-Step Action Plan.
+- Implemented safety constraints to ensure only legal tax-saving strategies are suggested.
+- Used dynamic context injection from the knowledge base based on user queries.
 
-### 2. High-Fidelity Preprocessing Pipeline
-- **Input Standardization**: Implemented a normalization layer that resizes images to 600x600 px. This resolution was chosen to preserve fine-grained textural "dots" that are often lost in standard 224x224 px AI models.
-- **Serialization**: Developed a RESTful bridge to serialize multi-class probability distributions, allowing for a "Confidence-First" UI where users see the margin of error between similar pathologies (e.g., Melanoma vs. Benign Nevi).
+### 2. Knowledge Base Integration
+- Built a clean retrieval system that loads and injects relevant portions of the Tax & GST knowledge base (updated as of Sep 2025) into every conversation.
+- Focused on domain-specific knowledge grounding for high-stakes financial advisory.
 
-### 3. Decoupled Cloud Architecture
-- **Inference Strategy**: Hosted the ViT weights on a specialized Hugging Face inference endpoint to offload compute-heavy tensor operations.
-- **Orchestration**: Built a Flask-based middleware to manage API handshakes, error handling, and Grad-CAM generation, ensuring the React frontend remains lightweight and performant.
-
-
+### 3. Production-Ready REST API Backend
+- Developed a robust Flask-based backend with proper error handling, input validation, and CORS support.
+- Designed a clean REST endpoint (`/api/chat`) that can be easily integrated into frontend applications or larger systems.
+- Prepared the architecture for easy containerization and deployment.
 
 ## Technical Stack
 
-* **Machine Learning**: PyTorch, Vision Transformer (ViT), Hugging Face Transformers
-* **Interpretability**: Grad-CAM, OpenCV (Heatmap Generation)
-* **Infrastructure**: Python (Flask), React, Docker, Render
-* **Dataset**: HAM10000 (13,354 dermatoscopic images)
+* **Language**: Python
+* **Backend**: Flask (REST API)
+* **LLM**: Google Gemini 1.5 Flash
+* **Techniques**: Advanced Prompt Engineering, RAG-style Retrieval, Multilingual NLP
+* **Others**: dotenv, Flask-CORS
+* **Frontend**: React + Vite
+* **Deployment**: Ready for Docker / Render / Hugging Face
 
-## Performance Metrics
+## Impact & Key Achievements
 
-| Metric | Result | Engineering Significance |
-| :--- | :--- | :--- |
-| **Validation Accuracy** | **96.95%** | High generalization on unseen diagnostic cases. |
-| **Validation Loss** | **0.10** | Indicates high model confidence and minimal log-loss. |
-| **Classes** | **7** | Covers critical pathologies including Melanoma and Basal Cell Carcinoma. |
+- Successfully handles complex tax scenarios (freelancers, salaried, GST queries, etc.)
+- Delivers consistently structured, professional, and actionable responses
+- Demonstrates practical application of LLM APIs in the **banking and financial domain**
 
 ## Disclaimer
-This project is for **educational and demonstration purposes only**. It is not intended for clinical use or diagnostic decision-making.
+This project is built for **educational and demonstration purposes only**. The advice provided is based on the knowledge base and should not be considered as official financial or tax consultation. Users are advised to consult certified professionals for real tax-related decisions.s
